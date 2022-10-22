@@ -1,0 +1,10 @@
+{
+  "acl": {
+    "enabled": true,
+    "default_policy": "deny",
+    "tokens" : {
+      "initial_management" : "8bf72d90-f845-4e45-bb7b-a5f73367cb77"
+    }
+  },
+  "encrypt" : "iJUTAWFbSGLZO3WOY9FcNVq9+WQ4HUjLAyXOZg8oAG8="
+}
