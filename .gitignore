@@ -1,9 +1,15 @@
+# consul-template
+configs/generated**
+
 # Local .terraform directories
 **/.terraform/*
 
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# autovars
+*.auto.tfvars
 
 # Crash log files
 crash.log
