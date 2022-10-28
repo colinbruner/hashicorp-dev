@@ -93,6 +93,27 @@ consul-template -once -config configs/nomad-config.hcl
 consul-template -once -config configs/consul-config.hcl
 ```
 
+#### Vault Approle
+
+The following are some example to work with Vault approle
+
+```bash
+# Verify approle is enabled and mounted
+vault auth list
+
+# List configured approles
+vault list auth/approle/role
+
+# Read Approle 'role_id'
+vault read auth/approle/role/approle-manager/role-id
+
+# Generate Approle 'secret_id'
+vault write -f auth/approle/role/approle-manager/secret-id
+
+# Login to Approle to generate a Vault token
+vault write auth/approle/login role_id="<role-id>" secret_id="<secret-id>"
+```
+
 ## Enterprise
 
 Running the above setup with Enterprise binaries will enable certain Enterprise only features for testing (such as namespaces). The following is required to run [setup](#setup) with Enterprise binaries.
