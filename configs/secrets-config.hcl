@@ -17,7 +17,7 @@ vault {
 ###
 # Generate Consul Encryption Key
 template {
-  contents    = "encrypt = \"{{ with secret \"secrets/consul/agent/config\" }}{{ .Data.data.encrypt }}{{ end }}\""
+  contents    = "encrypt = \"{{ with secret \"secret/consul/agent/config\" }}{{ .Data.data.encrypt }}{{ end }}\""
   destination = "./configs/generated/consul/encrypt.hcl"
   perms       = 0600
 }

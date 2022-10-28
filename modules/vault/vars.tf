@@ -17,3 +17,8 @@ variable "consul_license" {
   type      = string
   sensitive = true
 }
+
+variable "monitoring_apikeys" {
+  type      = map(string)
+  sensitive = true
+}

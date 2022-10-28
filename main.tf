@@ -7,6 +7,8 @@ module "vault" {
   # Nomad
   nomad_token   = var.nomad_token
   nomad_license = var.nomad_license
+  # Monitoring
+  monitoring_apikeys = var.monitoring_apikeys
 }
 
 module "consul" {

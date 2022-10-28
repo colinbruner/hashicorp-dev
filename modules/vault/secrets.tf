@@ -35,3 +35,11 @@ resource "vault_kv_secret_v2" "hashicorp" {
     consul = var.consul_license
   })
 }
+
+resource "vault_kv_secret_v2" "monitoring" {
+  mount = vault_mount.kvv2.path
+  name  = "monitoring/apikeys"
+
+  data_json = jsonencode(var.monitoring_apikeys)
+}
+
