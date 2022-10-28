@@ -7,6 +7,6 @@ data "vault_policy_document" "secret_admin" {
 }
 
 resource "vault_policy" "secret_admin" {
-  name   = "approle-manager"
+  name   = "secret-admin"
   policy = data.vault_policy_document.secret_admin.hcl
 }

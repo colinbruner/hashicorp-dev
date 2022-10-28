@@ -10,3 +10,7 @@ module "nomad-kvs" {
   consul_datacenter = "dc1"
   region            = var.region
 }
+
+module "configs" {
+  source = "./kvs/configs"
+}
