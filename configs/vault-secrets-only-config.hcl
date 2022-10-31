@@ -41,3 +41,9 @@ template {
   destination = "./configs/generated/monitoring/production-api-keys.hcl"
   perms       = 0600
 }
+
+template {
+  source      = "./configs/templates/monitoring/monitoring.conf"
+  destination = "./configs/generated/monitoring/dynamic-api-keys.hcl"
+  perms       = 0600
+}
