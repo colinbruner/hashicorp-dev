@@ -13,7 +13,7 @@ resource "vault_nomad_secret_role" "readonly" {
 
 resource "vault_nomad_secret_role" "nomad_client_drain" {
   backend  = vault_nomad_secret_backend.config.backend
-  role     = "readonly"
+  role     = "nomad-client-drain"
   type     = "client"
   policies = ["nomad-client-drain"]
 }
