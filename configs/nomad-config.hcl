@@ -19,6 +19,12 @@ template {
 }
 
 template {
+  source      = "./configs/templates/nomad/nomad.env.tpl"
+  destination = "./configs/generated/nomad/nomad.env"
+  perms       = 0600
+}
+
+template {
   source      = "./configs/templates/nomad/nomad.json.tpl"
   destination = "./configs/generated/nomad/nomad.json"
   perms       = 0600
