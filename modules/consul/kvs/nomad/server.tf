@@ -19,7 +19,7 @@ resource "consul_key_prefix" "server_config" {
     "audit/sink/json/delivery_guarantee" = "enforced",
     "audit/sink/json/format"             = "json"
     "audit/sink/json/mode"               = "0600"
-    "audit/sink/json/path"               = "/var/lib/nomad/audit/audit.log"
+    "audit/sink/json/path"               = "/opt/nomad/audit/audit.log"
     "audit/sink/json/rotate_bytes"       = 100
     "audit/sink/json/rotate_duration"    = "24h"
     "audit/sink/json/rotate_max_files"   = 10
