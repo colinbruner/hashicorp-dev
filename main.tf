@@ -1,3 +1,13 @@
+locals {
+  # Contrived 'api-keys' to pass to vault for secrets variables
+  monitoring_apikeys = {
+    platform   = "secret-platform"
+    dev        = "secret-dev"
+    staging    = "secret-staging"
+    production = "secret-production"
+  }
+}
+
 module "vault" {
   source = "./modules/vault"
 
@@ -8,7 +18,7 @@ module "vault" {
   nomad_token   = var.nomad_token
   nomad_license = var.nomad_license
   # Monitoring
-  monitoring_apikeys = var.monitoring_apikeys
+  monitoring_apikeys = local.monitoring_apikeys
 }
 
 module "consul" {

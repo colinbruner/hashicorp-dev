@@ -33,8 +33,3 @@ variable "environment" {
 variable "region" {
   default = "us-east1"
 }
-
-variable "monitoring_apikeys" {
-  type      = map(string)
-  sensitive = true
-}
