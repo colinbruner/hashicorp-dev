@@ -43,3 +43,22 @@ resource "vault_kv_secret_v2" "monitoring" {
   data_json = jsonencode(var.monitoring_apikeys)
 }
 
+resource "vault_kv_secret_v2" "secret_1" {
+  mount = vault_mount.kvv2.path
+  name  = "my-team/my-app/vault"
+  data_json = jsonencode(
+    {
+      key = "super-secret-value1",
+    }
+  )
+}
+
+resource "vault_kv_secret_v2" "secret_2" {
+  mount = vault_mount.kvv2.path
+  name  = "my-team/my-app/"
+  data_json = jsonencode(
+    {
+      key2 = "super-secret-value2",
+    }
+  )
+}
