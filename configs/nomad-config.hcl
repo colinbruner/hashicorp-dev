@@ -13,6 +13,12 @@ vault {
 }
 
 template {
+  source      = "./configs/templates/nomad/client.hcl.tpl"
+  destination = "./configs/generated/nomad/client.hcl"
+  perms       = 0600
+}
+
+template {
   source      = "./configs/templates/nomad/encrypt.hcl.tpl"
   destination = "./configs/generated/nomad/encrypt.hcl"
   perms       = 0600

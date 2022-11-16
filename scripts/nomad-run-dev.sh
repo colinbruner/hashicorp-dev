@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Execute
 CMD="nomad"
-ARGS="agent -dev -acl-enabled -consul-token=$(cat ${SCRIPT_DIR}/configs/consul-dev.token)"
+ARGS="agent -dev -config=${SCRIPT_DIR}/configs/nomad/ -acl-enabled -consul-token=$(cat ${SCRIPT_DIR}/configs/consul-dev.token)"
 
 if [[ $1 == "debug" ]]; then
   CMD=$(echo "${CMD} -log-level='debug'")
