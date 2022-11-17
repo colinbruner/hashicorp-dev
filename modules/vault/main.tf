@@ -14,6 +14,10 @@ module "pki" {
   source = "./secret/pki"
 }
 
+module "database" {
+  source = "./secret/database"
+}
+
 module "policy" {
   source = "./policy"
 }

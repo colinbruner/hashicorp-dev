@@ -114,6 +114,76 @@ vault write -f auth/approle/role/approle-manager/secret-id
 vault write auth/approle/login role_id="<role-id>" secret_id="<secret-id>"
 ```
 
+#### Dynamic Database Secrets
+
+The follow replicates the Hashicorp tutorial found [here](https://developer.hashicorp.com/vault/tutorials/db-credentials/database-secrets).
+
+This assumes the following commands have been executed locally.
+
+```bash
+# This should mimic steps 1-5 within the 'Start Postgres' section of the tutorial linked above
+$ ./scripts/database/setup-postgres.sh
+```
+
+Once the following is setup locally, a Terraform apply will allow you to create dynamic secrets.
+
+```bash
+$ terraform apply
+```
+
+Generate Postgres credentials with the following:
+
+```bash
+$ vault read database/creds/readonly
+Key                Value
+---                -----
+lease_id           database/creds/readonly/80MYLLuuMhn0qLG9ZDV2nral
+lease_duration     1h
+lease_renewable    true
+password           GTMd-UiySaplF1dWlpxb
+username           v-token-readonly-LQpd4b1NekmYV4H3GsHh-1668720276
+```
+
+View Postgres users with the following:
+
+```bash
+$ ./scripts/database/view-postgers-users.sh
+usename 										  | valuntil
+--------------------------------------------------+------------------------
+root  											  |
+v-token-readonly-LQpd4b1NekmYV4H3GsHh-1668720276  | 2022-11-17 22:24:41+00
+```
+
+View the existing database leases within Vault
+
+```bash
+$ vault list sys/leases/lookup/database/creds/readonly
+Keys
+----
+80MYLLuuMhn0qLG9ZDV2nral
+```
+
+Renew a specific lease within Vault
+
+```bash
+$ LEASE_ID=$(vault list -format=json sys/leases/lookup/database/creds/readonly | jq -r ".[0]")
+$ vault lease renew database/creds/readonly/$LEASE_ID
+Key                Value
+---                -----
+lease_id           database/creds/readonly/80MYLLuuMhn0qLG9ZDV2nral
+lease_duration     1h
+lease_renewable    true
+```
+
+Revoke a specific lease within Vault and view active leases
+
+```bash
+$ vault lease revoke database/creds/readonly/$LEASE_ID
+All revocation operations queued successfully!
+$ vault list sys/leases/lookup/database/creds/readonly
+No value found at sys/leases/lookup/database/creds/readonly
+```
+
 ## Enterprise
 
 Running the above setup with Enterprise binaries will enable certain Enterprise only features for testing (such as namespaces). The following is required to run [setup](#setup) with Enterprise binaries.
