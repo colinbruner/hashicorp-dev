@@ -9,8 +9,9 @@ resource "consul_key_prefix" "client_config" {
   path_prefix = "nomad/client/config/"
 
   subkeys = {
-    "region"   = var.region
-    "data_dir" = "/opt/nomad/data"
+    "region"     = "us-east"
+    "data_dir"   = "/opt/nomad/data"
+    "datacenter" = "gcp-us-east"
 
     # ACL
     "acl/enabled" = true

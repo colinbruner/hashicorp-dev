@@ -21,6 +21,10 @@ variable "pki_role_allowed_domains" {
     "dev.colinbruner.com",
     "us-east1.nomad",
     "us-east1.consul",
+    "us-east.nomad",
+    "us-east.consul",
+    "us-west.nomad",
+    "us-west.consul",
   ]
 }
 
