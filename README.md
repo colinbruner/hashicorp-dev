@@ -148,10 +148,10 @@ View Postgres users with the following:
 
 ```bash
 $ ./scripts/database/view-postgers-users.sh
-usename 										  | valuntil
+                     usename                      |        valuntil
 --------------------------------------------------+------------------------
-root  											  |
-v-token-readonly-LQpd4b1NekmYV4H3GsHh-1668720276  | 2022-11-17 22:24:41+00
+ root                                             |
+ v-token-readonly-LQpd4b1NekmYV4H3GsHh-1668720276 | 2022-11-17 22:34:35+00
 ```
 
 View the existing database leases within Vault
