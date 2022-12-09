@@ -128,7 +128,7 @@ $ ./scripts/database/setup-postgres.sh
 Once the following is setup locally, a Terraform apply will allow you to create dynamic secrets.
 
 ```bash
-$ terraform apply
+$ terraform apply -var "vault_database_secrets_enabled=true"
 ```
 
 Generate Postgres credentials with the following:

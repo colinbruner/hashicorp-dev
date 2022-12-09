@@ -15,6 +15,7 @@ module "pki" {
 }
 
 module "database" {
+  count  = var.vault_database_secrets_enabled ? 1 : 0
   source = "./secret/database"
 }
 
