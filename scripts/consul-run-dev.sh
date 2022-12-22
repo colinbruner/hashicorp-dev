@@ -4,7 +4,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # Execute
 CMD="consul"
-ARGS="agent -dev -config-file=${SCRIPT_DIR}/configs/consul-acl.json"
+BASE_ARGS="agent -dev -config-file=${SCRIPT_DIR}/configs/consul/secrets.json -config-file=${SCRIPT_DIR}/configs/consul/config.hcl"
 
 if [[ $1 == "debug" ]]; then
   CMD=$(echo "${CMD} -log-level='debug'")
@@ -17,5 +17,5 @@ if [[ ! -z ${CONSUL_LICENSE} ]]; then
 fi
 
 # Starts Consul server in dev mode with ACLs enabled
-echo "${CMD} ${ARGS}"
-${CMD} ${ARGS}
+echo "${CMD} ${BASE_ARGS}"
+${CMD} ${BASE_ARGS} -client '{{ GetPrivateInterfaces | exclude "type" "ipv6" | join "address" " " }} 127.0.0.1'

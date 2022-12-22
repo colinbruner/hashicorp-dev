@@ -11,11 +11,15 @@ export CONSUL_HTTP_TOKEN="8bf72d90-f845-4e45-bb7b-a5f73367cb77"
 
 # Nomad does not allow for seeding an initial token, so...
 # sourcing this file will bootstraps its ACLs and export the management token to your local shell
-echo "Bootstrapping Nomad Server's ACLs. This will FAIL if the Nomad development server is not running."
+echo "Bootstrapping Nomad Server's ACLs."
 export NOMAD_ADDR="http://127.0.0.1:4646"
 export NOMAD_TOKEN="$(nomad acl bootstrap -t '{{ .SecretID }}')"
+if [[ $? != 0 ]]; then
+  echo "Unable to bootstrap Nomad's ACL. Ensure the Nomad development server is running."
+fi
 
 # For consumption by Terraform
 export TF_VAR_vault_token="${VAULT_TOKEN}"
 export TF_VAR_consul_token="${CONSUL_HTTP_TOKEN}"
 export TF_VAR_nomad_token="${NOMAD_TOKEN}"
+export TF_VAR_nomad_addr="${NOMAD_ADDR}"
