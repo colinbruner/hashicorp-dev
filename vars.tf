@@ -1,4 +1,12 @@
 ###
+# Vault
+###
+variable "vault_enabled" {
+  default     = true
+  description = "Configure Vault through Terraform"
+}
+
+###
 # Consul
 ###
 variable "consul_token" {
@@ -9,6 +17,11 @@ variable "consul_token" {
 variable "consul_license" {
   description = "Optional Enterprise Consul License"
   default     = ""
+}
+
+variable "consul_enabled" {
+  default     = true
+  description = "Configure Consul through Terraform"
 }
 
 ###
@@ -22,6 +35,12 @@ variable "nomad_token" {
 variable "nomad_license" {
   description = "Optional Enterprise Nomad License"
   default     = ""
+}
+
+variable "nomad_enabled" {
+  type        = bool
+  default     = true
+  description = "Configure Nomad through Terraform"
 }
 
 ###

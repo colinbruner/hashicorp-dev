@@ -1,3 +1,6 @@
+###
+# Nomad
+###
 variable "nomad_token" {
   type      = string
   sensitive = true
@@ -8,6 +11,15 @@ variable "nomad_license" {
   sensitive = true
 }
 
+variable "nomad_enabled" {
+  type        = bool
+  default     = true
+  description = "Configure Nomad through Terraform"
+}
+
+###
+# Consul
+###
 variable "consul_token" {
   type      = string
   sensitive = true
@@ -18,6 +30,14 @@ variable "consul_license" {
   sensitive = true
 }
 
+variable "consul_enabled" {
+  default     = true
+  description = "Configure Consul through Terraform"
+}
+
+###
+# Misc
+###
 variable "monitoring_apikeys" {
   type      = map(string)
   sensitive = true

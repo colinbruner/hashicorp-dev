@@ -11,8 +11,8 @@ configs/generated**
 *.tfstate
 *.tfstate.*
 
-# autovars
-*.auto.tfvars
+# disallow only terraform.auto.autovars
+terraform.auto.tfvars
 
 # Crash log files
 crash.log

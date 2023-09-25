@@ -1,10 +1,12 @@
 module "consul" {
+  count  = var.consul_enabled ? 1 : 0
   source = "./secret/consul"
 
   consul_token = var.consul_token
 }
 
 module "nomad" {
+  count  = var.nomad_enabled ? 1 : 0
   source = "./secret/nomad"
 
   nomad_token = var.nomad_token

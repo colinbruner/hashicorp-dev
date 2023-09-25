@@ -60,6 +60,8 @@ nv | grep -E '(consul|nomad)'
 
 Once your have Vault, Consul, and Nomad dev instances running locally and secrets exported into your shell, you're good to configure them using Terraform.
 
+Before running `terraform apply` review [enabled.auto.tfvars](./enabled.auto.tfvars) to ensure you're applying configurations for services you're developing.
+
 ```bash
 terraform apply
 ...
@@ -182,6 +184,18 @@ $ vault lease revoke database/creds/readonly/$LEASE_ID
 All revocation operations queued successfully!
 $ vault list sys/leases/lookup/database/creds/readonly
 No value found at sys/leases/lookup/database/creds/readonly
+```
+
+#### Transit Engine
+
+Added a simple transit engine with the following aes256 default configurations
+
+```bash
+# After running Vault and applying Terraform
+$ ./tests/encrypt-data.sh 'this is a test'
+vault:v1:1r3wZyM53ReW2ElRBgX2Rjkb5nbzyqquvQ9lWdYfXZ9HP1Le5nv86OjfPQ==
+$ ./tests/decrypt-data.sh 'vault:v1:1r3wZyM53ReW2ElRBgX2Rjkb5nbzyqquvQ9lWdYfXZ9HP1Le5nv86OjfPQ=='
+this is a test
 ```
 
 ## Enterprise
